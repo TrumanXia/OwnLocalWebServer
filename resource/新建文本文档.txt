@@ -1,0 +1,84 @@
+public class Parenthesis {
+    public boolean chkParenthesis(String A, int n) {
+        // write code here
+        if (n % 2 != 0) {
+            return false;
+        }
+        
+        int flag = 0;
+        char[] chars = A.toCharArray();
+        for (int i = 0, len = chars.length; i < len; i++) {
+            if (chars[i] == '(') {
+                flag ++;
+            }
+            if (chars[i] == ')') {
+                flag --;
+            } 
+        }
+        return flag == 0;
+    }
+}
+
+public String replaceSpace(StringBuffer str) {
+        
+    	return str.toString().replace(" ", "%20");
+    }
+	
+	import java.util.*;
+public class Main {
+    
+    public static void main(String[] args) {
+
+Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String str = sc.nextLine();//next()是遇到空格；nextLine()是遇到回车
+            StringBuilder sb = new StringBuilder(str);          
+            System.out.println(sb.reverse().toString());
+        }}
+   
+   
+}
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        String[] strs = new String[2]; 
+        int h=0;
+        while(s.hasNext()) {
+            strs[h++] = s.nextLine();
+        }
+        char[] chars1 = strs[0].toCharArray();
+        char[] chars2 = strs[1].toCharArray();
+        int len1 = chars1.length;
+        int len2 = chars2.length;
+        int[][] temp = new int[len1][len2];
+        int len = 0;
+        StringBuilder builder = new StringBuilder();
+        String history = "";
+        for (int i = 0 ; i < len1; i++) {
+            for (int j = 0; j < len2; j++) {
+                if (chars1[i] == chars2[j]) {
+                    if (i > 0 && j >0 ){
+                        temp[i][j] = 1 + temp[i-1][j-1];
+                    } else {
+                        temp[i][j] = 1;
+                    }
+                    if (len < temp[i][j]) {
+                        len = temp[i][j];
+                    }
+                    if (history.length() < builder.length()) {
+                        builder.setLength(0);
+                    } else {
+                        builder.append(chars1[i]);
+                    }
+                } else {
+                    temp[i][j] = 0;
+                    history = builder.toString();
+                }
+            }
+        }
+        //System.out.println(len);
+        System.out.println(history);
+    }
+}
